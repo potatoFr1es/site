@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Флексим без мягкого знака{% endblock %}
+
+{% block stylesheets %}
+<style>
+    img {
+        max-width: 250px !important;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+{% for post in posts %}
+
+    <div class="jumbotron">
+        <h3 class="display-4"><a href="/post/{{ post.id }}">{{ post.title }}</a></h3>
+        <p>
+            <a href="/post/{{ post.id }}">
+                <img src="{{ post.photo }}">
+            </a>
+        </p>
+        <p style="color: {% if post.rating >= 0 %}limegreen{% else %}red{% endif %}; font-weight: bold; ">{{ post.rating }}</p>
+        <hr class="my-4">
+        <p class="lead">{{ post.text }}</p>
+    </div>
+
+
+{% endfor %}
+
+{% endblock %}

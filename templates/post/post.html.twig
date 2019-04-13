@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Просмотр поста № {{ id }}!{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        img {
+            max-width: 250px !important;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{ title }}</h1>
+        <p><img src="{{ photo }}"></p>
+        <p style="color: {% if rating >= 0 %}limegreen{% else %}red{% endif %}; font-weight: bold; ">{{ rating }}</p>
+        <hr class="my-4">
+        <p class="lead">{{ text }}</p>
+    {% if(canVote) %}
+    <form action="/post/vote" method="post" class="form-inline">
+            <div class="input-group">
+                <select class="form-control mr-sm-2" name="type">
+                    <option value="1">Like</option>
+                    <option value="0">Dislike</option>
+                </select>
+            </div>
+
+        <div class="input-group">
+            <input type="submit" value="Vote!" class="btn btn-primary">
+        </div>
+        <input type="hidden" name="id" value="{{ id }}">
+    </form>
+    {% endif %}
+    </div>
+{% endblock %}

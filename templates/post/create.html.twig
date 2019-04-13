@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Флексим без мягкого знака{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block stylesheets %}
+<style>
+    img {
+        max-width: 250px !important;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    <div class="form-group">
+        {{ form_row(form.title) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.photo) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.text) }}
+    </div>
+    {{ form_row(form.safe) }}
+    {{ form_end(form) }}
+
+{% endblock %}
